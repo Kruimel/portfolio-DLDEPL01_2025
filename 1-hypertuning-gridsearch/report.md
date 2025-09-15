@@ -18,4 +18,4 @@ Figure 1. Line graph of loss per epoch during learning of the 512 unit models of
 ![Figure 2. Line graph of loss per ecoch during training of the 2 layered models](image-1.png)
 Figure 2. Line graph of loss per ecoch during training of the 2 layered models of 32 units (grey), 128 units (blue) and 512 units (pink).
 
-To conclude, increasing the number of units or layers increases the accuarcy, but on this relativly simple dataset this is goals is already reached with 3+ layers or 128+ units per layer. Increasing the number of layers or units further will not improve accuarcy, it might even reduce the performance of the model due to overfitting. 
+To conclude, increasing the number of units or layers increases the accuarcy, but on this relativly simple dataset this is goals is already reached with 3+ layers or 128+ units per layer. Increasing the number of layers or units further will not improve accuarcy, it might even reduce the performance of the model due to overfitting.

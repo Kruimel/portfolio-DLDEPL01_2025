@@ -4,3 +4,6 @@ gestures/
 logs/
 .lycheecache
 experiment*/
+mlruns/
+models/
+mlflow.db

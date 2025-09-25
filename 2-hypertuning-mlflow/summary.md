@@ -1,7 +1,7 @@
 # Summary week 2
 
-Find the [instructions](./instructions.md)
+Find the [notebook](./notebook.ipynb) and the [instructions](./instructions.md)
 
-[Notebook](./notebook.ipynb)
+[Report](./report.md)
 
 [Go back to Homepage](../README.md)

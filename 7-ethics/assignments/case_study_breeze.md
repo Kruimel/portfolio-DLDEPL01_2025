@@ -1,0 +1,10 @@
+# Case study Breeze
+
+Reading the article, I noticed two things that are alarming. To start with, I think it is concerning that only after signals from users were given, the company noticed that there is a difference in the number of times someone is suggested. In my opinion these basic statistics should be something you can monitor. Even without the connection to specific account, if you anonymize the accounts. Secondly, the developers of the algorithm do not know how the input of the model influences the outcome, in this case the suggestions. As the whole suggestion method is relying on the model, I would at least do some basic data exploration and activity monitoring to gain some insight on what the model does. Also taking the AI act into consideration, Breeze is accountable for their product therefor be able to explain how it works and what the consequences for the user might be.
+
+Now it is known that the application discriminates in who is suggested more often, I am curious how the developers and the rest of the company are going to solve this. I would suggest moving to a system that randomizes the suggestions and then shuffles the suggestions around based on personal preferences. For creating such a model, ethical reasoning should be taken into account when defining the performance metrics used to validate such a model, not only the success rate of matches. For example, the diversity of suggestions given to a user. The updated model should also be explained, so users who are interested can read how the algorithm works, and how it might influence their choices compared to a completely randomized suggestion system.
+Figure 1 shows a DAG diagram of some of the possibilities for the Breeze application.
+
+![diagram](dag.svg)
+
+Figure 1. DAG diagram of possible directions for the Breeze application.

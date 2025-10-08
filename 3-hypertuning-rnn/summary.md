@@ -1,8 +1,7 @@
 # Summary week 3
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 Find the [notebook](./notebook.ipynb) and the [instructions](./instructions.md)
 
-[Report](./report.md)
+This is the report: [Report](./report.md)
 
 [Go back to Homepage](../README.md)

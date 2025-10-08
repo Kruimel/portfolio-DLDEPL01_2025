@@ -9,6 +9,7 @@ dependencies = [
     "mads-datasets[torch]>=0.3.14",
     "mltrainer>=0.2.5",
     "tomlserializer>=0.2.0",
+    "torch-summary>=1.4.5",
     "torchinfo>=1.8.0",
 ]
 

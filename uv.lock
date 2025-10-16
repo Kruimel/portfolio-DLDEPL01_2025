@@ -2311,6 +2311,7 @@ dependencies = [
     { name = "tomlserializer" },
     { name = "torch-summary" },
     { name = "torchinfo" },
+    { name = "torchvision" },
 ]
 
 [package.dev-dependencies]
@@ -2327,6 +2328,7 @@ requires-dist = [
     { name = "tomlserializer", specifier = ">=0.2.0" },
     { name = "torch-summary", specifier = ">=1.4.5" },
     { name = "torchinfo", specifier = ">=1.8.0" },
+    { name = "torchvision", specifier = ">=0.23.0" },
 ]
 
 [package.metadata.requires-dev]

@@ -9,3 +9,5 @@ models/
 mlflow.db
 */mlflow.db
 **/data
+hypertune/
+

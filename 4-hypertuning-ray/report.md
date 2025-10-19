@@ -55,14 +55,30 @@ To explore the possible structures further, I performed a hyperband tuning, with
 
 Although the training showed improved performance, the train_loss and validation loss started to diverge around 6 epochs, suggesting the model is overfitting.
 
-![alt text](images/image-4.png)
+Trying to get the model to learn the patterns better, so overfitting can be avoided I added a crop and horizontal flip to the data loader transformer. As visible in the images below, it does not completely remove the overfitting effect, but limits it
 
-Trying to get the model to learn the patterns better, so overfitting can be avoided I added a crop and horizontal flip to the data loader transformer.
+<table>
+    <tr>
+        <td><img src="images/overfitting.png" alt="Overfitting Example 1" width="350"/></td>
+        <td><img src="images/overfitting2.png" alt="Overfitting Example 2" width="350"/></td>
+    </tr>
+    <tr>
+        <td align="center">Train vs Validation Loss before applying transformations</td>
+        <td align="center">Train vs Validation Loss after applying transformations</td>
+    </tr>
+</table>
 
 Best configuration before adding transformers:
-hidden_size': 378
-filters': 100
-kernel_size': 2,
-padding': 0
+hidden_size: 378
+filters: 100
+kernel_size: 2
+padding: 0
 
 Best configuration when adding transformers:
+hidden_size: 415
+filters: 146
+kernel_size: 2
+padding: 0
+
+## 4. Improve model hyperparameters with BOHB (Bayesian Optimization HyperBand) 
+

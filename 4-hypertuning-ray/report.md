@@ -69,16 +69,42 @@ Trying to get the model to learn the patterns better, so overfitting can be avoi
 </table>
 
 Best configuration before adding transformers:
-hidden_size: 378
-filters: 100
-kernel_size: 2
-padding: 0
+- hidden_size: 378
+- filters: 100
+- kernel_size: 2
+- padding: 0
+
+Resulting in 72.83% accuracy on the test set in 10 epochs
 
 Best configuration when adding transformers:
-hidden_size: 415
-filters: 146
-kernel_size: 2
-padding: 0
+- hidden_size: 415
+- filters: 146
+- kernel_size: 2
+- padding: 0
 
-## 4. Improve model hyperparameters with BOHB (Bayesian Optimization HyperBand) 
+Resulting in 73.18% accuracy on the test set in 10 epochs.
+
+## 4. Improve model hyperparameters with Hyperband scheduler
+
+Trying to improve the performance, I wanted to see if I can implement residual layers, batch normalization and dropout. To try as many possibilities, without having to wait for days, I used the hyperband scheduler. Here I also used different batch_sizes to see if that might influence the accuracy. These are the 5 best performing settings and their performance:
+
+| Trial ID      | Train Loss | Val Loss | Train Acc (%) | Val Acc (%) | Batch Size | Dropout | Filters | Hidden Size | Kernel Size | Conv Layers | FC Layers | Padding | BatchNorm | Residual | Epochs | Learning Rate | Optimizer | Scheduler |  
+|--------------|------------|----------|---------------|-------------|------------|---------|---------|-------------|-------------|-------------|-----------|---------|-----------|----------|--------|---------------|-----------|-----------|  
+| 075d9_00098  | 0.236      | 0.520    | 91.80         | 84.13       | 64         | 0.20    | 128     | 512         | 3           | 3           | 2         | 1       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
+| 075d9_00028  | 0.218      | 0.644    | 92.47         | 81.26       | 128        | 0.30    | 96      | 256         | 5           | 3           | 1         | 1       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
+| 075d9_00045  | 0.157      | 0.677    | 94.52         | 82.69       | 64         | 0.10    | 128     | 256         | 5           | 3           | 1         | 1       | True      | False    | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
+| 075d9_00080  | 0.284      | 0.706    | 89.90         | 79.10       | 128        | 0.20    | 96      | 768         | 2           | 3           | 1         | 1       | False     | False    | 48     | 0.001         | Adam      | ReduceLROnPlateau |  
+| 075d9_00016  | 0.398      | 0.715    | 85.94         | 77.47       | 128        | 0.20    | 48      | 512         | 3           | 2           | 2         | 0       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
+
+To see if the mistakes that are still made by the model is logical, I created a confusion matrix and had a look at some of the mislabeled images:
+
+![Confusion matrix](images/confusion_matrix.png)
+
+![alt text](images/correct_pred.png)
+
+![alt text](images/incorrect_pred.png)
+
+There are some classes that are often mismatched. Like the airplane and ship, that might be due to both having a blue background. And dog, cat and deer, probably due to having similar features like legs, head and body. 
+
+## 5. Comparison with transfer learning
 

@@ -11,3 +11,4 @@ mlflow.db
 **/data
 hypertune/
 
+saved_models/

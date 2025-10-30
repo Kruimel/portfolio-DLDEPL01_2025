@@ -8,7 +8,7 @@ For this assignment the CIFAR10 dataset is used. It contains small RGB images of
 
 Before fine tuning any model, I want to compare the learning curve of a neural network (NN) with and without residual layers with a convolutional neural network (CNN). Based on the theory, the should learn better with less epochs as it is able the find patterns in the images.
 
-I trained 2 neural networks with 5 layers, one with residual layers added. Then one CNN with 3 layers of 64 filters with kernel size of 3 followed by 2 fully connected layer. In the figures below it is clear that the CNN is able to reach higher accuracy within 5 epochs  -
+I trained 2 neural networks with 5 layers, one with residual layers added. Then one CNN with 3 layers of 64 filters with kernel size of 3 followed by 2 fully connected layer. In the figures below it is clear that the CNN is able to reach higher accuracy within 10 epochs. Both the NN's reach a accuracy of around 45% and the CNN 73%, but taking longer to train (on cpu).
 
 <table>
     <tr>
@@ -88,13 +88,13 @@ Resulting in 73.18% accuracy on the test set in 10 epochs.
 
 Trying to improve the performance, I wanted to see if I can implement residual layers, batch normalization and dropout. To try as many possibilities, without having to wait for days, I used the hyperband scheduler. Here I also used different batch_sizes to see if that might influence the accuracy. These are the 5 best performing settings and their performance:
 
-| Trial ID      | Train Loss | Val Loss | Train Acc (%) | Val Acc (%) | Batch Size | Dropout | Filters | Hidden Size | Kernel Size | Conv Layers | FC Layers | Padding | BatchNorm | Residual | Epochs | Learning Rate | Optimizer | Scheduler |  
-|--------------|------------|----------|---------------|-------------|------------|---------|---------|-------------|-------------|-------------|-----------|---------|-----------|----------|--------|---------------|-----------|-----------|  
-| 075d9_00098  | 0.236      | 0.520    | 91.80         | 84.13       | 64         | 0.20    | 128     | 512         | 3           | 3           | 2         | 1       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
-| 075d9_00028  | 0.218      | 0.644    | 92.47         | 81.26       | 128        | 0.30    | 96      | 256         | 5           | 3           | 1         | 1       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
-| 075d9_00045  | 0.157      | 0.677    | 94.52         | 82.69       | 64         | 0.10    | 128     | 256         | 5           | 3           | 1         | 1       | True      | False    | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
-| 075d9_00080  | 0.284      | 0.706    | 89.90         | 79.10       | 128        | 0.20    | 96      | 768         | 2           | 3           | 1         | 1       | False     | False    | 48     | 0.001         | Adam      | ReduceLROnPlateau |  
-| 075d9_00016  | 0.398      | 0.715    | 85.94         | 77.47       | 128        | 0.20    | 48      | 512         | 3           | 2           | 2         | 0       | True      | True     | 50     | 0.001         | Adam      | ReduceLROnPlateau |  
+| Trial ID      | Train Loss | Val Loss | Train Acc (%) | Val Acc (%) | BatchNorm | Dropout | Filters | Hidden Size | Kernel Size | Padding | Residual | Batch Size | Num Conv Layers | Training Iterations |  
+|---------------|------------|----------|---------------|-------------|-----------|---------|---------|-------------|-------------|---------|----------|------------|------------------|---------------------|  
+| 1f9b5_00006   | 0.5861     | 0.7070   | 79.52         | 75.71       | False     | 0.3     | 109     | 397         | 2           | 0       | False    | 64         | 2                | 50                  |  
+| 1f9b5_00007   | 0.5941     | 0.7171   | 79.17         | 75.37       | False     | 0.3     | 118     | 452         | 2           | 0       | False    | 64         | 2                | 50                  |  
+| 1f9b5_00011   | 0.6453     | 0.7237   | 77.19         | 74.45       | True      | 0.3     | 223     | 354         | 2           | 0       | True     | 64         | 2                | 50                  |  
+| 1f9b5_00027   | 0.5605     | 0.7365   | 80.25         | 74.74       | False     | 0.2     | 107     | 263         | 2           | 0       | True     | 64         | 2                | 50                  |  
+| 1f9b5_00036   | 0.4712     | 0.7577   | 83.20         | 75.21       | False     | 0.1     | 204     | 321         | 2           | 0       | True     | 64         | 2                | 32                  |  
 
 To see if the mistakes that are still made by the model is logical, I created a confusion matrix and had a look at some of the mislabeled images:
 
@@ -108,3 +108,23 @@ There are some classes that are often mismatched. Like the airplane and ship, th
 
 ## 5. Comparison with transfer learning
 
+I expect that a model that is pre-trained can faster learn, as it already recognizes patterns in images. I tried the Resnet18 and Resnet34 and compared them to my own trained model. Looking at the learning curve, the resnet models are indeed able to learn much faster, hitting a accuracy of 80% or more within 4 epochs, where it took me over 30 epoch to hit 75% accuracy.
+
+The Resnet18 model already contains enough complexity to capture the patterns in the images. Compared to the Resnet34 it shows a similar performance with less overfitting.
+
+<table>
+    <tr>
+        <th>Best CNN model</th>
+        <th>Resnet18</th>
+        <th>Resnet34</th>
+    </tr>
+    <tr>
+        <td><img src="images/learn_curve_best_model_hyperparameter_tuning.png" alt="NN" width="250"/></td>
+        <td><img src="images/learn_curve_reset18.png" alt="NN with residual layers" width="250"/></td>
+        <td><img src="images/learn_curve_resnet34.png" alt="CNN" width="250"/></td>
+    </tr>
+</table>
+
+When looking at the confusion matrix of the resnet18 model, it still shows some similar mistakes. The dogs and cat classes are still often mistaken. but the distinction between airplane and ship is now much better predicted. 
+
+![alt text](images/confusion_matrix_reset18.png)

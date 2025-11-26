@@ -9,7 +9,7 @@ I am interested in the effect of the following parameters of a convolution netwo
 - the use of padding
 - different methods op pooling; max pooling, mean pooling or down sampling
 
-I think larger images need a bigger kernel size and higher number of kernels to capture its complexity. I also expect not using padding has more influence on training a model for smaller images than it is for larger images because you lose a larger proportion of the data. Finally, I suspect that the pooling method should not make a different as they all make a summary of the features.
+I think larger images need a bigger kernel size and higher number of kernels to capture its complexity. I also expect not using padding has more influence on training a model for smaller images than it is for larger images because you lose a larger fraction of the data. Finally, I suspect that the pooling method should not make a different as they all make a summary of the features.
 
 When having found well working settings, I want to experiment if using batch normalizations and/or using dropout layers can improve the accuracy of the models.
 
@@ -33,7 +33,7 @@ search_space = {
 
 ### Results 1
 
-Kernel size of 1 gives the worst results, which is probably because it cannot extract. Also stride of 2 did not work, because the image ends up being to small.
+Kernel size of 1 gives the worst results, which is probably because it cannot extract any patterns. Also stride of 2 did not work, because the image ends up being to small.
 When comparing the accuracy, the models with kernel size of 2 and 128 filers performs best, getting up to an accuracy of 0,76 with 10 epochs. The average pooling in this case performs less then the max pooling.
 
 ## Experiment 2. gridsearch on flower dataset
@@ -55,7 +55,7 @@ search_space = {
 
 ### Results 2
 
-As expected, the bigger images require larger filters to capture the patters of the image. Here the max pooling seems to outperform the avg pooling. What does strikes me is that the high number of filters do not necessarily perform better. The 3 best performing models have 128 to 256 filters, but not the 512. Padding does not make a big difference in performance.
+As expected, the bigger images require larger filters to capture the patters of the image. Here the max pooling seems to outperform the avg pooling as well. What does strike me is that the high number of filters do not necessarily perform better. The 3 best performing models have 128 to 256 filters, but not the 512. Padding does not make a big difference in performance.
 
 ## Experiment 3. effect of dropout and batch normalization
 

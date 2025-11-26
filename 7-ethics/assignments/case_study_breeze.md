@@ -8,3 +8,5 @@ Figure 1 shows a DAG diagram of some of the possibilities for the Breeze applica
 ![diagram](dag.svg)
 
 Figure 1. DAG diagram of possible directions for the Breeze application.
+
+While working on the dag diagram, it becomes clear that this model is probably evolved this way as it gives the company good results in the majority of the population meaning they will earn the most profit. Changing the algorithm will therefor going to hurt the companies income. To avoid this, it should have consulted experts during the development of the model, so fairness would be part of the design process. 

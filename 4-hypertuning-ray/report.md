@@ -36,7 +36,7 @@ To get a better feeling for how the CNN should look like, I performed a grid sea
 }
 ```
 
-As training is not very fast, I only used 3 epochs per model configuration. In general more filters performed better, while more than 2 convolutional layers does not increase performance (see heatmap). Also a kernel size of 3 performs slightly better than 2 and increasing the number of fully connected layers does not improve the validation accuracy.
+As training is not very fast, I only used 3 epochs per model configuration. In general more filters performed better, while more than 2 convolutional layers does not increase performance (see heatmap). Also a kernel size of 3 performs slightly better than 2 and increasing the number of fully connected layers does not improve the validation accuracy. 
 
 ![alt text](images/image-3.png)
 
@@ -76,7 +76,7 @@ Best configuration before adding transformers:
 
 Resulting in 72.83% accuracy on the test set in 10 epochs
 
-Best configuration when adding transformers:
+Best configuration after adding transformers:
 - hidden_size: 415
 - filters: 146
 - kernel_size: 2

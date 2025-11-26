@@ -12,10 +12,10 @@ When plotting the accuracy, GRU outperforms LSTM. The LSTM model might be to com
 
 ## Experiment 2. Influence of adding convolutional layer
 
-Adding a convolutional layer should make it easier to pull out patterns. Again train is done using 10 epochs.
+Adding a convolutional layer should make it easier to pull out patterns. Again training is done using 10 epochs.
 
 ### Results 2
 
-For 1 and 2 layer RNN models, a convulutional layer seem the help, while looking at the 3 layered RNN models, the one without a convolution layer performs better.
+For 1 and 2 layered RNN models, a convulutional layer seem the help, while looking at the 3 layered RNN models, the one without a convolution layer performs better. This might be the point where the convolution + the 3 RNN layers are to complex and overfitting starts to play a role.
 
 ![alt text](image-1.png)
